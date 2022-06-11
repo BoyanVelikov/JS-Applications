@@ -1,0 +1,86 @@
+describe('Math enforcer', function() {
+    describe("Add Five", function() {
+        it("the parameter of addFive() should be a number", function() {
+            let num = "string";
+            let actual = mathEnforcer.addFive(num);
+            expect(typeof actual).to.be.equal("undefined", "Function did not return the correct result!");
+        });
+        it("addFive() should return correct result for positive parameters", function() {
+            let actual = mathEnforcer.addFive(10);
+            expect(actual).to.be.equal(15, "Function did not return the correct result!");
+        });
+        it("addFive() should work with negative parameter", function() {
+            let actual = mathEnforcer.addFive(-10);
+            expect(actual).to.be.equal(-5, "Function did not return the correct result!");
+        });
+        it("addFive() should work with positive floating-point parameter", function() {
+            let actual = mathEnforcer.addFive(10.55);
+            expect(actual).to.be.closeTo(15.55, 0.01, "Function did not return the correct result!");
+        });
+        it("addFive() should return correct result with negative floating-point parameter", function() {
+            let actual = mathEnforcer.addFive(-10.55);
+            expect(actual).to.be.closeTo(-5.55, 0.01, "Function did not return the correct result!");
+        });
+    });
+
+    describe("Subtract Ten", function() {
+        it("the parameter of subtractTen() should be a number", function() {
+            let num = "string";
+            let actual = mathEnforcer.subtractTen(num);
+            expect(typeof actual).to.be.equal("undefined", "Function did not return the correct result!");
+        });
+        it("subtractTen() should return correct result", function() {
+            let actual = mathEnforcer.subtractTen(15);
+            expect(actual).to.be.equal(5, "Function did not return the correct result!");
+        });
+        it("subtractTen() should work with negative parameter", function() {
+            let actual = mathEnforcer.subtractTen(-15);
+            expect(actual).to.be.equal(-25, "Function did not return the correct result!");
+        });
+        it("subtractTen() should work with floating-point parameter", function() {
+            let actual = mathEnforcer.subtractTen(-15.5);
+            expect(actual).to.be.equal(-25.5, "Function did not return the correct result!");
+        });
+        it("subtractTen() should return correct result with floating-point parameter", function() {
+            let actual = mathEnforcer.subtractTen(-10.55);
+            expect(actual).to.be.closeTo(-20.55, 0.01, "Function did not return the correct result!");
+        });
+    });
+
+    describe("Sum", function() {
+        it("the first parameter of sum function should be a number", function() {
+            let num1 = "check";
+            let actual = mathEnforcer.sum(num1, 20);
+            expect(typeof actual).to.be.equal("undefined", "Function did not return the correct result!");
+        });
+        it("the second parameter of sum function should be a number", function() {
+            let num2 = "string";
+            let actual = mathEnforcer.sum(20, num2);
+            expect(typeof actual).to.be.equal("undefined", "Function did not return the correct result!");
+        });
+        it("the sum function should return sum of parameters", function() {
+            let actual = mathEnforcer.sum(20, 10);
+            expect(actual).to.be.equal(30, "Function did not return the correct result!");
+        });
+        it("the sum function should return sum of negative parameters", function() {
+            let actual = mathEnforcer.sum(-20, -10);
+            expect(actual).to.be.equal(-30, "Function did not return the correct result!");
+        });
+        it("the sum function should return sum of floating-point parameters", function() {
+            let actual = mathEnforcer.sum(-20.3, -10.2);
+            expect(actual).to.be.equal(-30.5, "Function did not return the correct result!");
+        });
+        it("the sum function should return sum of different Number type parameters", function() {
+            let actual = mathEnforcer.sum(-20.3, -10);
+            expect(actual).to.be.equal(-30.3, "Function did not return the correct result!");
+        });
+        it("the sum function should return sum of negative and positive parameters", function() {
+            let actual = mathEnforcer.sum(-20.3, 10);
+            expect(actual).to.be.equal(-10.3, "Function did not return the correct result!");
+        });
+        it("sum() should return correct result with floating-point parameter", function() {
+            let actual = mathEnforcer.sum(-10.20, 20.30);
+            expect(actual).to.be.closeTo(10.10, 0.01, "Function did not return the correct result!");
+        });
+    });
+})
