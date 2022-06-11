@@ -1,0 +1,35 @@
+describe('Char lookup', () => {
+    it("should return undefined with a parameter 1 which is not a string", function() {
+        let string = 789;
+        let actual = lookupChar(string, 5);
+        expect(actual).to.be.equal(undefined, "Function did not return the correct result!");
+    });
+    it("should return undefined with a parameter 1 with wrong type", function() {
+        let string = 789;
+        let actual = lookupChar(string, 5);
+        expect(typeof actual).to.be.equal("undefined", "Function did not return the correct result!");
+    });
+    it("should return undefined with a parameter2 which is not a number", function() {
+        let index = 3.12;
+        let actual = lookupChar("Benji", index);
+        expect(actual).to.be.equal(undefined, "Function did not return the correct result!");
+    });
+    it("should return undefined with a parameter2 which is a floating-point number", function() {
+        let index = 3.12;
+        let actual = lookupChar("Peter", index);
+        expect(actual).to.be.equal(undefined, "Function did not return the correct result!");
+    });
+    it("should return Incorrect index if the index is incorrect", function() {
+        let index = 100;
+        let actual = lookupChar("Merry", index);
+        expect(actual).to.be.equal("Incorrect index", "Function did not return the correct result!");
+    });
+    it("should return Incorrect index if the index is a negative number", function() {
+        let actual = lookupChar("John", -5);
+        expect(actual).to.be.equal("Incorrect index", "Function did not return the correct result!");
+    });
+    it("should return the character at the specified index in the string", function() {
+        let actual = lookupChar("Sam", 2);
+        expect(actual).to.be.equal("m", "Function did not return the correct result!");
+    });
+})
