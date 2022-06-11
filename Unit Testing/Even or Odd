@@ -1,0 +1,22 @@
+describe('Even or odd', () => {
+    it("check if input is string", function() {
+        let input = 123;
+        let actual = isOddOrEven(input);
+        expect(actual).to.be.equal(undefined);
+    });
+    it("check the type of input", function() {
+        let input = 456;
+        let actual = isOddOrEven(input);
+        expect(typeof actual).to.be.equal("undefined");
+    });
+    it("check if the result is odd", function() {
+        let input = "Tom";
+        let actual = isOddOrEven(input);
+        expect(actual).to.be.equal("odd");
+    });
+    it("check of the result is even", function() {
+        let input = "Jane";
+        let actual = isOddOrEven(input);
+        expect(actual).to.be.equal("even");
+    });
+})
