@@ -1,0 +1,88 @@
+describe('Payment package', function() {
+    describe("constructor", function() {
+        it("Test name type", function() {
+            let myObj = new PaymentPackage('str', 1000);
+            expect(typeof myObj.name).to.equal('string');
+        });
+        it("Test value type", function() {
+            let myObj = new PaymentPackage('str', 1000);
+            expect(typeof myObj.value).to.equal('number');
+        });
+        it("Test if name is empty", function() {
+            expect(() => new PaymentPackage('', 1000)).to.Throw('Name must be a non-empty string');
+        });
+        it("Test if name is other than string", function() {
+            expect(() => new PaymentPackage(10, 1000)).to.Throw('Name must be a non-empty string');
+        });
+        it("Test if value is a negative number", function() {
+            expect(() => new PaymentPackage('str', -100)).to.Throw('Value must be a non-negative number');
+        });
+        it("Test if value is other than number", function() {
+            expect(() => new PaymentPackage('str', {})).to.Throw('Value must be a non-negative number');
+        });
+        it('Set value to null', () => {
+            let myObj = new PaymentPackage('Name', 100);
+            assert.doesNotThrow(() => {
+                myObj.value = 0
+            })
+        });
+        it("Test if VAT is other than number", function() {
+            let myObj = new PaymentPackage('str', 1000);
+            expect(typeof myObj.VAT).to.equal('number');
+        });
+        it("Test if throw an error if VAT is other than number", function() {
+            let myObj = new PaymentPackage('str', 1000);
+            expect(() => myObj.VAT = 'John').to.Throw('VAT must be a non-negative number');
+        });
+        it("Test if throw an error if VAT is negative number", function() {
+            let myObj = new PaymentPackage('str', 1000);
+            expect(() => myObj.VAT = -20).to.Throw('VAT must be a non-negative number');
+        });
+        it("Test if active is boolean", function() {
+            let myObj = new PaymentPackage('str', 1000);
+            expect(() => myObj.active = 20).to.Throw('Active status must be a boolean');
+        });
+    });
+
+    describe('to string', function() {
+        it('should return correct result', function() {
+            let myObj = new PaymentPackage('Consultation', 800);
+            let output = [
+                `Package: Consultation`,
+                `- Value (excl. VAT): 800`,
+                `- Value (VAT 20%): 960`
+            ];
+            expect(myObj.toString()).to.equal(output.join('\n'));
+        });
+    });
+
+    describe("result", function() {
+        it("should return correct result - name", function() {
+            let myObj = new PaymentPackage('HR Services', 1500);
+            expect(myObj.name).to.equal('HR Services');
+        });
+        it("should return correct result - value", function() {
+            let myObj = new PaymentPackage('HR Services', 1500);
+            expect(myObj.value).to.equal(1500);
+        });
+        it("should return correct result - active", function() {
+            let myObj = new PaymentPackage('HR Services', 1500);
+            expect(myObj.active).to.equal(true);
+        });
+        it("should return correct result - VAT", function() {
+            let myObj = new PaymentPackage('HR Services', 1500);
+            expect(myObj.VAT).to.equal(20);
+        });
+        it('Should return a string as all the input is correct', () => {
+            let myObj = new PaymentPackage('str', 1000);
+            myObj.VAT = 30;
+            myObj.active = false;
+            let output = [
+                `Package: str (inactive)`,
+                `- Value (excl. VAT): 1000`,
+                `- Value (VAT 30%): 1300`
+            ]
+            expect(myObj.toString()).to.equal(output.join('\n'));
+        });
+    });
+});
