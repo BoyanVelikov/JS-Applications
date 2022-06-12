@@ -1,0 +1,27 @@
+import fetch from 'node-fetch'
+
+fetch('https://restcountries.com/v2/name/italy')
+    .then((response) => response.json())
+    .then((data) => {
+        let resultArr = [];
+        let obj = {};
+        obj['name'] = data[0].name;
+        obj['capital'] = data[0].capital;
+        obj['region'] = data[0].region;
+        obj['population'] = data[0].population;
+        resultArr.push(obj);
+        console.log(resultArr);
+    });
+
+fetch('https://restcountries.com/v2/lang/de')
+    .then((response) => response.json())
+    .then((data) => {
+        let resultArr2 = [];
+        for (let i = 0; i < data.length; i++) {
+            let obj1 = {};
+            obj1['name'] = data[i].name;
+            obj1['region'] = data[i].region;
+            resultArr2.push(obj1);
+        }
+        console.log(resultArr2);
+    });
